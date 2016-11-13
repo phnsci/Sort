@@ -158,6 +158,51 @@ public class Sort {
   }      
   
   /**
+   * Quick Sort 
+   * @param a an array with need to sort
+   */
+  public static <AnyType> void quickSort(AnyType [] a) {
+	  quickSort(a, 0, a.length - 1);
+  }
+  
+  
+  public static <AnyType> void quickSort(AnyType [] a, int left, int right) {
+	  
+	  if (left < right) {
+		  int pivotPtr = partition(a, left, right);
+		  quickSort(a, left, pivotPtr);
+		  quickSort(a, pivotPtr + 1, right);
+	  }
+  }
+  
+  
+  /** 
+   * quick sort with left and right index
+   * @param a an array with need to sort
+   * @param left the left pointer
+   * @param right the right pointer
+   */
+  public static <AnyType extends Comparable <? super AnyType>>
+  int partition(AnyType [] a, int left, int right) {
+	  AnyType pivotVal = a[left];	// pivot value is the value of left pointer
+	  int i = left; 				// the pointer that will go toward the right
+	  int j = right; 				// the pointer that will go toward the left
+	  
+	  while (i < j) {
+		  while (a[i].compareTo(pivotVal) < 0)
+			  i++;
+		  while (a[j].compareTo(pivotVal) > 0)
+			  j--;
+		  if (i < j) 
+			  swapRef(a, i, j);
+	  }
+	  
+	  swapRef(a, left, j);
+	  return j;
+  }
+  
+  
+  /**
    * printout a given array
    * @param a just an array
    */
@@ -181,6 +226,3 @@ public class Sort {
     printArray(b);
   }
 }
-
-// this is for testing purpose
-// testing for new branch
