@@ -161,13 +161,14 @@ public class Sort {
    * Quick Sort 
    * @param a an array with need to sort
    */
-  public static <AnyType> void quickSort(AnyType [] a) {
+  public static <AnyType extends Comparable <? super AnyType>> 
+  void quickSort(AnyType [] a) {
 	  quickSort(a, 0, a.length - 1);
   }
   
   
-  public static <AnyType> void quickSort(AnyType [] a, int left, int right) {
-	  
+  public static <AnyType extends Comparable <? super AnyType>> 
+  void quickSort(AnyType [] a, int left, int right) {
 	  if (left < right) {
 		  int pivotPtr = partition(a, left, right);
 		  quickSort(a, left, pivotPtr);
@@ -187,9 +188,9 @@ public class Sort {
 	  AnyType pivotVal = a[left];	// pivot value is the value of left pointer
 	  int i = left; 				// the pointer that will go toward the right
 	  int j = right; 				// the pointer that will go toward the left
-	  
+	  System.out.println(pivotVal);
 	  while (i < j) {
-		  while (a[i].compareTo(pivotVal) < 0)
+		  while (a[i].compareTo(pivotVal) <= 0 && i <= a.length)
 			  i++;
 		  while (a[j].compareTo(pivotVal) > 0)
 			  j--;
@@ -198,6 +199,7 @@ public class Sort {
 	  }
 	  
 	  swapRef(a, left, j);
+	  printArray(a);
 	  return j;
   }
   
@@ -214,23 +216,22 @@ public class Sort {
   }
   
   public static void main(String [] args) {
-    Integer [] a = {4, 2, 9, 3, 1, 5, 8, 7, 6, 0};
+    //Integer [] a = {4, 2, 9, 3, 1, 5, 8, 7, 6, 0};
     //printArray(a);
     //heapSort(a);
     //printArray(a);
     
+   // System.out.println();
+    //Integer [] b = {4, 2, 9, 3, 1, 5, 8, 7, 6, 0};
+    //printArray(b);
+    //mergeSort(b);
+    //printArray(b);
+    
     System.out.println();
-    Integer [] b = {4, 2, 9, 3, 1, 5, 8, 7, 6, 0};
-    printArray(b);
-    mergeSort(b);
-    printArray(b);
-  }
-<<<<<<< HEAD
-}
+    Integer [] c = {4, 2, 9, 3, 1, 5, 8, 7, 6, 0};
+    printArray(c);
+    quickSort(c);
+    printArray(c);
 
-// this is for testing purpose
-// testing for new branch
-// another test
-=======
+  }
 }
->>>>>>> master
