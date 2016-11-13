@@ -114,13 +114,17 @@ public class Sort {
    */
   public static <AnyType extends Comparable <? super AnyType>>
   void merge(AnyType [] a, int left, int middle, int right) {
-    int i = left;         // pointer 1 in left subarray
-    int j = middle + 1;   // pointer 2 in right subarray
+    int i = left;         // pointer 1 in left sub array
+    int j = middle + 1;   // pointer 2 in right sub array
     int k = 0;
-    int length = right - middle + 1;    // length of the temporary sorted array
+    int length = right - left + 1;    // length of the temporary sorted array
     
     // create the temporary sorted array
     AnyType [] tempArray = (AnyType []) new Comparable [length]; 
+    
+    //for (int q = left; q <= right; q++) {
+    	//System.out.print(a[q] + " ");
+    //}
     
     while (i <= middle && j <= right) { 
       // compare pointer 1 and 2 element
@@ -140,7 +144,7 @@ public class Sort {
     		tempArray[k] = a[i];
     		i++;
     	}
-    	
+    
     	if (j <= right) {
     		tempArray[k] = a[j];
     		j++;
@@ -148,6 +152,10 @@ public class Sort {
     	
     	k++;
     }
+    
+    //System.out.println();
+    //System.out.println("temp array after sort: ");
+    //printArray(tempArray);
     
     // assign elements in temporary array back to original array
     k = 0;
@@ -188,7 +196,7 @@ public class Sort {
 	  AnyType pivotVal = a[left];	// pivot value is the value of left pointer
 	  int i = left; 				// the pointer that will go toward the right
 	  int j = right; 				// the pointer that will go toward the left
-	  System.out.println(pivotVal);
+	  //System.out.println(pivotVal);
 	  while (i < j) {
 		  while (a[i].compareTo(pivotVal) <= 0 && i <= a.length)
 			  i++;
@@ -199,7 +207,7 @@ public class Sort {
 	  }
 	  
 	  swapRef(a, left, j);
-	  printArray(a);
+	  //printArray(a);
 	  return j;
   }
   
@@ -221,17 +229,18 @@ public class Sort {
     //heapSort(a);
     //printArray(a);
     
-   // System.out.println();
-    //Integer [] b = {4, 2, 9, 3, 1, 5, 8, 7, 6, 0};
-    //printArray(b);
-    //mergeSort(b);
-    //printArray(b);
+    System.out.println();
+    Integer [] b = {4, 2, 9, 3, 1, 5, 8, 7, 6, 0};
+    printArray(b);
+    mergeSort(b);
+    printArray(b);
     
+	/*
     System.out.println();
     Integer [] c = {4, 2, 9, 3, 1, 5, 8, 7, 6, 0};
     printArray(c);
     quickSort(c);
     printArray(c);
-
+	*/
   }
 }
